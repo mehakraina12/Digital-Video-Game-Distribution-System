@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Garamond, serif;
+            background-image:url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+            background-color: #cccccc;
+            height: 700px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            color: #F6F6C9;
+        }  
+    </style>  
+    <title> Digital Video Game Distribution </title>
+</head>
+
+<body>
+<left>
+    <a href="{% url 'HomePage' %}">
+        <button>HomePage</button>
+    </a>
+</left>
+
+<left>
+    <a href="{% url 'showGame' %}">
+        <button>Game Database</button>
+    </a>
+</left>
+
+<left>
+    <a href="{% url 'insertGame' %}">
+        <button>Insert Game</button>
+    </a>
+</left>
+
+    <center>
+        <h1 style="color:white; font-family: Copperplate, Papyrus, fantasy;"> Edit Game Records </h1>
+    </hr>
+    
+        <form method="POST" action="/updateGame/{{game.game_id}}">
+            {% csrf_token%}
+        <table border="1" bgcolor="#3E6D9C">
+            <tr>
+                <td><b>Game ID</b></td>
+                <td><input type="text" name="game_id" value="{{game.game_id}}" readonly></td>
+            </tr>
+
+            <tr>
+                <td><b>Game Name</b></td>
+                <td><input type="text" name="game_name" value="{{game.game_name}}" ></td>
+            </tr>
+
+
+            <tr>
+                <td><b>Age Restriction</b></td>
+                <td><input type="text" name="age_restriction" value="{{game.age_restriction}}" ></td>
+            </tr>
+
+            <tr>
+                <td><b>Banned Regions</b></td>
+                <td><input type="text" name="banned_regions" value="{{game.banned_regions}}" ></td>
+            </tr>
+
+            <tr>
+                <td><b>Genre</b></td>
+                <td><input type="text" name="genre" value="{{game.genre}}" ></td>
+            </tr>
+
+            <tr>
+                <td><b>Price</b></td>
+                <td><input type="text" name="price" value="{{game.price}}" ></td>
+            </tr>
+
+            <tr>
+                <td><b>System Requirements</b></td>
+                <td><input type="text" name="system_requirements" value="{{game.system_requirements}}" ></td>
+            </tr>
+
+            <tr>
+                <td><b>Game Ratings</b></td>
+                <td><input type="text" name="game_ratings" value="{{game.game_ratings}}" ></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Update Record"></td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: red;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html>

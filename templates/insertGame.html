@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Garamond, serif;
+            background-image:url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+            background-color: #cccccc;
+            height: 700px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+
+        }  
+    </style>  
+    <title> Digital Video Game Distribution </title>
+</head>
+
+<body>
+    <left>
+        <a href="{% url 'HomePage' %}">
+            <button>HomePage</button>
+        </a>
+    </left>
+    
+    <left>
+        <a href="{% url 'showGame' %}">
+            <button>Game Database</button>
+        </a>
+    </left>
+
+    <center>
+        <h1 style="color:white; font-family: Copperplate, Papyrus, fantasy;"> Insert Game </h1>
+        <hr/>
+        <form method="POST">
+            {% csrf_token %}
+        <table border="1" bgcolor="#3E6D9C">
+            <tr>
+                <td><b> Game ID </b></td>
+                <td><input type="text" placeholder="Enter Game ID" name="game_id"></td>
+            </tr>
+            <tr>
+                <td><b> Game Name </b></td>
+                <td><input type="text" placeholder="Enter Game Name" name="game_name"></td>
+            </tr>
+            <tr>
+                <td><b> Age Restrictions </b></td>
+                <td><input type="text" placeholder="Enter Age Restriction" name="age_restriction"></td>
+            </tr>
+
+            <tr>
+                <td><b> Banned Regions </b></td>
+                <td><input type="text" placeholder="Enter Banned Regions" name="banned_regions"></td>
+            </tr>
+
+            <tr>
+                <td><b> Genre </b></td>
+                <td><input type="radio" name="genre" value="Racing">Racing </br>
+                    <input type="radio" name="genre" value="FPS">FPS </br>
+                    <input type="radio" name="genre" value="Arcade">Arcade </br>
+                    <input type="radio" name="genre" value="Open World">Open World </br>
+                    <input type="radio" name="genre" value="RPG">RPG
+                </td>
+            </tr>
+
+            <tr>
+                <td><b> Price </b></td>
+                <td><input type="text" placeholder="Enter Price" name="price"></td>
+            </tr>
+            <tr>
+                <td><b> System Requirements </b></td>
+                <td><input type="text" placeholder="Enter System Requirements" name="system_requirements"></td>
+            </tr>
+
+            <tr>
+                <td><b> Game Ratings </b></td>
+                <td><input type="text" placeholder="Enter Game Ratings" name="game_ratings"></td>
+            </tr>
+            <tr>
+                <td> <input type="submit" value="Insert"/> </td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: red;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html>

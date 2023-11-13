@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Garamond, serif;
+            background-image:url("https://images8.alphacoders.com/570/570408.jpg");
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: repeat;
+            background-size: cover;
+            position: relative;
+            color: #F6F6C9
+        }  
+        td {
+            text-align: center;
+        }
+    </style>  
+    <title> Digital Video Game Distribution </title>
+</head>
+
+<body>
+    <left>
+        <a href="{% url 'HomePage' %}">
+            <button>HomePage</button>
+        </a>
+    </left>
+    
+    <left>
+        <a href="{% url 'showUser' %}">
+            <button>User Database</button>
+        </a>
+    </left>
+
+    <left>
+        <a href="{% url 'insertUser' %}">
+            <button>Insert User</button>
+        </a>
+    </left>
+
+    <center>
+        <h1 style="color:white; font-family: Copperplate, Papyrus, fantasy;"> Show User Records </h1>
+    </hr>
+</hr>
+        <table border="1" bgcolor="#3E6D9C">
+           <tr>
+                    {% for col in colnames%}
+                        <th><b>{{col}}</b></th>
+                    {% endfor %}
+                </tr>
+                {% for result in data %}
+                    <tr>
+                        {% for nc in result %}
+                            <td><i>{{nc}}</i></td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Garamond, serif;
+            background-image:url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+            background-color: #cccccc;
+            height: 700px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            color: #F6F6C9
+        }  
+    </style>  
+    <title> Digital Video Game Distribution </title>
+</head>
+
+<body>
+<left>
+    <a href="{% url 'HomePage' %}">
+        <button>HomePage</button>
+    </a>
+</left>
+
+<left>
+    <a href="{% url 'showUser' %}">
+        <button>User Database</button>
+    </a>
+</left>
+
+<left>
+    <a href="{% url 'insertUser' %}">
+        <button>Insert User</button>
+    </a>
+</left>
+
+    <center>
+        <h1 style="color:white; font-family: Copperplate, Papyrus, fantasy;"> Delete User Record </h1>
+    </hr>
+
+        <form method="POST" action="/deletedUser/{{User.user_id}}">
+            {% csrf_token%}
+        
+            <table border="1" bgcolor="#3E6D9C">
+                <tr>
+                    <td><b>User ID</b></td>
+                    <td><input type="text" name="user_id" value="{{User.user_id}}" readonly></td>
+                </tr>
+    
+                <tr>
+                    <td><b>User Name</b></td>
+                    <td><input type="text" name="user_name" value="{{User.user_name}}" ></td>
+                </tr>
+    
+    
+                <tr>
+                    <td><b>Age</b></td>
+                    <td><input type="text" name="age" value="{{User.age}}" ></td>
+                </tr>
+    
+    
+                <tr>
+                    <td><b>User Location</b></td>
+                    <td><input type="text" name="user_location" value="{{User.user_location}}" ></td>
+                </tr>
+
+                <tr>
+                    <td><b>Game ID</b></td>
+                    <td><input type="text" name="game_id" value="{{User.game_id}}" ></td>
+                </tr>
+    
+
+            <tr>
+                <td><input type="submit" value="Delete Record"></td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: red;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html>

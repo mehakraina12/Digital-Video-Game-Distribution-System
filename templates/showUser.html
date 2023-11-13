@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Garamond, serif;
+            background-image:url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: repeat;
+            background-size: cover;
+            position: relative;
+            color: #F6F6C9;
+        }  
+        td {
+            text-align: center;
+        }
+    </style>  
+    <title> Digital Video Game Distribution </title>
+</head>
+
+<body>
+    <left>
+        <a href="{% url 'HomePage' %}">
+            <button>HomePage</button>
+        </a>
+    </left>
+    
+    <left>
+        <a href="{% url 'insertUser' %}">
+            <button>Insert User</button>
+        </a>
+    </left>
+
+    <center>
+        <h1 style="color:white; font-family: Copperplate, Papyrus, fantasy;"> Show User Records </h1>
+    </hr>
+    <form method="POST" action="sortUser">
+        {% csrf_token %}
+        <label for="Sort"></label>
+            <select id="Sort" name="Sort">
+                <option value="user_id">User ID</option>
+                <option value="user_name">User Name</option>
+                <option value="age">Age</option>
+                <option value="user_location">User Location</option>
+                <option value="game_id">Game ID</option>
+            </select>
+            <input type="submit" value="Sort"/>
+    </form>
+</hr>
+    <a href="{% url 'runQueryUser' %}">
+        <button>Run Query</button>
+    </a>
+</hr>
+        <table border="1" bgcolor="#3E6D9C">
+            <tr>
+                <th><b> User ID </b></th>
+                <th><b> User Name </b></th>
+                <th><b> Age  </b></th>
+                <th><b> User Location </b></th>
+                <th><b> Game ID </b></th>
+            </tr>
+            {% for result in data %}
+            <tr>
+                <td><i> {{result.user_id}}</i></td>
+                <td><i> {{result.user_name}} </i></td>
+                <td><i> {{result.age}} </i></td>
+                <td><i> {{result.user_location}} </i></td>
+                <td><i> {{result.game_id}} </i></td>
+                <td><a href="editUser/{{result.user_id}}">Edit✍</a></td>
+                <td><a href="delUser/{{result.user_id}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>
